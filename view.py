@@ -1,10 +1,18 @@
 import controller
 
 
-def set_new_contact(elements):
-    print(elements)
+
+def set_new_contact():
+    elements = controller.get_elements()
     name = elements['name'].get()
     surname = elements['surname'].get()
     phone_number = elements['phone number'].get()
     contact = f'{name} {surname}: {phone_number}'
-    elements['contacts list'].insert()
+    controller.add_to_listbox(contact)
+
+def print_contacts_list(contacts_list):
+    for contact in contacts_list:
+        print(contact)
+        print(len(contact))
+        if contact != '':
+            controller.add_to_listbox(contact)

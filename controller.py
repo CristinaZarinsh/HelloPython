@@ -6,7 +6,22 @@ from tkinter import ttk
 elements = {}
 
 def add_contact():
-    view.set_new_contact(elements)
+    view.set_new_contact()
+
+def add_to_listbox(contact):
+     elements['contacts list'].insert(END, contact)
+     sent_contacts_list_to_model()
+
+def delete_contact():
+     elements['contacts list'].delete(elements['contacts list'].curselection()[0])   
+     sent_contacts_list_to_model()
+
+def sent_contacts_list_to_model():
+    contacts_list = elements['contacts list'].get(0, END)     
+    model.write_contacts(contacts_list) 
+
+def get_elements():
+    return elements     
 
 def start():
     root = Tk()
@@ -31,11 +46,12 @@ def start():
     elements['phone number'] = phone_number_ent
 
     add_contact_btn = Button(frm, text='Добавить контакт', command=add_contact).grid(row=4, column=1)
-    delite_contact_btn = Button(frm, text='Удалить контакт').grid(row=6, column=1)
+    delete_contact_btn = Button(frm, text='Удалить контакт', command=delete_contact).grid(row=6, column=1)
 
-    all_contacts = Listbox(frm)
-    all_contacts.grid(row=6, column=0)
-    elements['contacts list'] = all_contacts
+    all_contacts_1box = Listbox(frm, width=45, height=8)
+    all_contacts_1box.grid(row=6, column=0)
+    elements['contacts list'] = all_contacts_1box
+    model.read_contacts()
 
 
     root.mainloop()
