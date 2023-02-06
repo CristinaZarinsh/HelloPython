@@ -51,26 +51,37 @@ def zadacha2():
         if sum_in_row > diagonal_sum:
             print(f'{index + 1}. {row} = {sum_in_row}')
 
-def zadacha3():
+def period_for_month(temp_in_month, period, month):
     # Задача 3. В двумерном массиве хранятся средние дневные температуры с мая по сентябрь за прошлый год. Каждому месяцу соответствует своя строка. Определите самый жаркий и самый холодный 7-дневный промежуток каждого месяца. Выведите их даты.
-
-    month = [random.randint(18, 32) for _ in range(8)]
 
     max_temp = 0
     day_max_temp = 1
     min_temp = 1000
     day_min_temp = 1
-    period = 3
 
-    for day in month:
-        temp_in_
+    for day in range(len(temp_in_month) - period + 1):
+        temp_in_period = temp_in_month[day:day + period]
+        sum_temp_in_period = sum(temp_in_period)
+        print(f"{day+1} - {day+period}. {temp_in_period} {sum_temp_in_period}")
+        if sum_temp_in_period > max_temp:
+            max_temp = sum_temp_in_period
+            day_max_temp = day
+        elif sum_temp_in_period < min_temp:
+            min_temp = sum_temp_in_period
+            day_min_temp = day
+
+    print(f'Максимальная температура {round(max_temp/period, 1)} была с {day_max_temp + 1} по {day_max_temp + period} {month}')
+    print(f'Минимальная температура {round(min_temp/period, 1)} была с {day_min_temp + 1} по {day_min_temp + period} {month}')
+
+def zadacha3():
+
+    temp_in_month = [random.randint(18, 32) for _ in range(31)]
+    print(f'Все температуры: {temp_in_month}')
+    period = 7
+    period_for_month(temp_in_month, period, 'июля')
 
 
+zadacha1()
+zadacha2()
+zadacha3()    
 
-
-
-
-
-
-
-zadacha2()    
