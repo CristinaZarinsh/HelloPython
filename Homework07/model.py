@@ -1,4 +1,4 @@
-import view
+import Homework07.view as view
 
 def write_contacts(contacts_list):
     data = open('phone_numbers.txt', mode='w', encoding='utf-8')

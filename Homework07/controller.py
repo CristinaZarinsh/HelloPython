@@ -1,5 +1,5 @@
-import model
-import view
+import Homework07.model as model
+import Homework07.view as view
 from tkinter import *
 from tkinter import ttk
 
